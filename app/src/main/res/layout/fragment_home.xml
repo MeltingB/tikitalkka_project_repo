@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="com.meltingb.tikitalkka.base.Constants" />
+
+        <variable
+            name="vm"
+            type="com.meltingb.tikitalkka.viewmodel.HomeViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/col_fc"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/llTop"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:background="@color/col_primary"
+                    android:orientation="vertical"
+                    android:padding="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/tvTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="bottom"
+                        android:text="@string/home_title"
+                        android:textColor="@color/white"
+                        android:textSize="24sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:orientation="vertical"
+                    android:padding="20dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/llTop">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:backgroundTint="@color/white"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:stateListAnimator="@null"
+                        android:text="@string/random_chat"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/txt_333"
+                        android:textSize="16sp"
+                        app:cornerRadius="8dp"
+                        app:icon="@drawable/talk_00"
+                        app:iconGravity="textStart"
+                        app:iconSize="24dp"
+                        app:strokeColor="@color/col_primary"
+                        app:strokeWidth="1dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnFriend"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="12dp"
+                        android:backgroundTint="@color/white"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:stateListAnimator="@null"
+                        android:text="@string/topic_friend"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/txt_333"
+                        android:textSize="16sp"
+                        app:cornerRadius="8dp"
+                        app:strokeColor="@color/col_ddd"
+                        app:strokeWidth="1dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnCouple"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="12dp"
+                        android:backgroundTint="@color/white"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:stateListAnimator="@null"
+                        android:text="@string/topic_couple"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/txt_333"
+                        android:textSize="16sp"
+                        app:cornerRadius="8dp"
+                        app:strokeColor="@color/col_ddd"
+                        app:strokeWidth="1dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnFamily"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="12dp"
+                        android:backgroundTint="@color/white"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:stateListAnimator="@null"
+                        android:text="@string/topic_family"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/txt_333"
+                        android:textSize="16sp"
+                        app:cornerRadius="8dp"
+                        app:strokeColor="@color/col_ddd"
+                        app:strokeWidth="1dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="12dp"
+                        android:backgroundTint="@color/white"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:stateListAnimator="@null"
+                        android:text="@string/topic_date"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/txt_333"
+                        android:textSize="16sp"
+                        app:cornerRadius="8dp"
+                        app:strokeColor="@color/col_ddd"
+                        app:strokeWidth="1dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnWork"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="12dp"
+                        android:backgroundTint="@color/white"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:stateListAnimator="@null"
+                        android:text="@string/topic_work"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/txt_333"
+                        android:textSize="16sp"
+                        app:cornerRadius="8dp"
+                        app:strokeColor="@color/col_ddd"
+                        app:strokeWidth="1dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnBalance"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="12dp"
+                        android:backgroundTint="@color/white"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:stateListAnimator="@null"
+                        android:text="@string/topic_balance"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/txt_333"
+                        android:textSize="16sp"
+                        app:cornerRadius="8dp"
+                        app:strokeColor="@color/col_ddd"
+                        app:strokeWidth="1dp" />
+
+                    <TextView
+                        android:id="@+id/tvVersion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="16dp"
+                        android:textColor="@color/txt_999"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
