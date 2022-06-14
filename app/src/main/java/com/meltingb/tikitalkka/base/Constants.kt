@@ -10,4 +10,6 @@ object Constants {
     const val TOPIC_WORK = "TOPIC_WORK"
     const val TOPIC_BALANCE = "TOPIC_BALANCE"
 
+    const val PREF_KEY_USER_UID = "PREF_KEY_USER_UID"
+
 }

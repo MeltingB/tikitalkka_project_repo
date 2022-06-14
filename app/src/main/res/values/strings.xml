@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Tikitalkka</string>
+    <string name="app_name">티키톡카</string>
     <string name="copy_right"><![CDATA[ⓒ2021. young&bee. All right reserved.]]></string>
     <string name="random_chat">랜덤 대화</string>
     <string name="topic_friend">친구</string>
@@ -9,4 +9,10 @@
     <string name="topic_work">직장</string>
     <string name="topic_balance">밸런스게임</string>
     <string name="home_title">대화 주제 선택</string>
+
+    <string name="ok">확인</string>
+    <string name="cancel">취소</string>
+    <string name="restart">재실행</string>
+    <string name="network_error_message">네트워크 연결을 확인 후\n다시 시도해주세요.</string>
+    <string name="auth_error">앱 데이터를 가져오는데 실패했습니다.\n네트워크를 확인해주세요.</string>
 </resources>
