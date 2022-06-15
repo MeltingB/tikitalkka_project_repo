@@ -11,7 +11,9 @@
     <color name="col_primary">#7F68EC</color>
     <color name="col_fc">#FCFCFC</color>
     <color name="txt_999">#999999</color>
+    <color name="txt_555">#555555</color>
     <color name="txt_333">#333333</color>
     <color name="col_ddd">#DDDDDD</color>
     <color name="col_eee">#EEEEEE</color>
+    <color name="col_d5">#D5D5D5</color>
 </resources>

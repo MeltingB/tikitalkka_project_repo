@@ -63,6 +63,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/llTop">
 
                     <com.google.android.material.button.MaterialButton
+                        OnSingleClick="@{()->vm.movePickView(Constants.TOPIC_RANDOM)}"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:backgroundTint="@color/white"
@@ -84,6 +85,7 @@
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnFriend"
+                        OnSingleClick="@{()->vm.movePickView(Constants.TOPIC_FRIEND)}"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_marginTop="12dp"
@@ -103,6 +105,7 @@
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnCouple"
+                        OnSingleClick="@{()->vm.movePickView(Constants.TOPIC_COUPLE)}"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_marginTop="12dp"
@@ -122,6 +125,7 @@
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnFamily"
+                        OnSingleClick="@{()->vm.movePickView(Constants.TOPIC_FAMILY)}"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_marginTop="12dp"
@@ -141,6 +145,7 @@
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnDate"
+                        OnSingleClick="@{()->vm.movePickView(Constants.TOPIC_DATE)}"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_marginTop="12dp"
@@ -160,6 +165,7 @@
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnWork"
+                        OnSingleClick="@{()->vm.movePickView(Constants.TOPIC_WORK)}"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_marginTop="12dp"
@@ -179,6 +185,7 @@
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnBalance"
+                        OnSingleClick="@{()->vm.movePickView(Constants.TOPIC_BALANCE)}"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_marginTop="12dp"

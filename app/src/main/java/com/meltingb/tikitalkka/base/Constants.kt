@@ -10,6 +10,7 @@ object Constants {
     const val TOPIC_WORK = "TOPIC_WORK"
     const val TOPIC_BALANCE = "TOPIC_BALANCE"
 
-    const val PREF_KEY_USER_UID = "PREF_KEY_USER_UID"
+    const val PREF_KEY_USER_UID = "PREF_KEY_USER_UID"               // 사용자 uid
+    const val PREF_KEY_IS_SAVE_USER = "PREF_KEY_IS_SAVE_USER"       // 사용자 저장 여부
 
 }
