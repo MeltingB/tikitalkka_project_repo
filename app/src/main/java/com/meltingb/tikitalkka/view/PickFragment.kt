@@ -37,11 +37,16 @@ class PickFragment : BaseFragment<FragmentPickBinding>(R.layout.fragment_pick) {
 
     private val viewModel: PickViewModel by viewModel()
     private val args: PickFragmentArgs by navArgs<PickFragmentArgs>()
+    private var dataList = listOf<ChatTopicDTO>()
+
+    private var cardPosition = 0
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.vm = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
+
+        dataList = args.dataListModel.datList
 
         initUI()
     }
@@ -62,11 +67,31 @@ class PickFragment : BaseFragment<FragmentPickBinding>(R.layout.fragment_pick) {
             flipCard(requireContext(), binding.clQuestionView, binding.llBackView)
             binding.btnStart.visibility = View.GONE
             binding.llBottomButton.visibility = View.VISIBLE
+
+            setCardContent(cardPosition)
         }
 
+        binding.btnNext.setOnClickListener {
+            setCardContent(cardPosition + 1)
+            flipCard(requireContext(), binding.clQuestionView, binding.llBackView)
+        }
+
+        viewModel.nowCountLiveData.value = "1"
+        viewModel.totalCountLiveData.value = dataList.size.toString()
     }
 
-    fun flipCard(context: Context, visibleView: View, inVisibleView: View) {
+    private fun setCardContent(position: Int) {
+        viewModel.chatContentLiveData.value = dataList[position].chatContent
+        if (dataList[position].description.isNotEmpty()) {
+            viewModel.chatDescriptionLiveData.value = dataList[position].description
+            binding.tvDescription.visibility = View.VISIBLE
+        } else {
+            binding.tvDescription.visibility = View.INVISIBLE
+        }
+        viewModel.nowCountLiveData.value = (position + 1).toString()
+    }
+
+    private fun flipCard(context: Context, visibleView: View, inVisibleView: View) {
         try {
             visibleView.isVisible = true
             val scale = context.resources.displayMetrics.density

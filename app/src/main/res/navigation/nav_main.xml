@@ -21,5 +21,8 @@
             android:name="topicType"
             app:argType="string"
             android:defaultValue="TOPIC_RANDOM" />
+        <argument
+            android:name="dataListModel"
+            app:argType="com.meltingb.tikitalkka.model.ChatTopicList" />
     </fragment>
 </navigation>

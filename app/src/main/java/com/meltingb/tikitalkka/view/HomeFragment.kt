@@ -3,6 +3,7 @@ package com.meltingb.tikitalkka.view
 import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.meltingb.base.helpers.debug
@@ -22,6 +23,7 @@ import com.meltingb.tikitalkka.base.Constants.TOPIC_RANDOM
 import com.meltingb.tikitalkka.base.Constants.TOPIC_WORK
 import com.meltingb.tikitalkka.databinding.FragmentHomeBinding
 import com.meltingb.tikitalkka.model.ChatTopicDTO
+import com.meltingb.tikitalkka.model.ChatTopicList
 import com.meltingb.tikitalkka.model.UserDTO
 import com.meltingb.tikitalkka.viewmodel.HomeViewModel
 import org.joda.time.DateTime
@@ -50,15 +52,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         if (!AppPreference.get(PREF_KEY_IS_SAVE_USER, false)) {
             insertUser() // 사용자 AUTH 저장 (추후 확정성 고려)
         }
-        getChatTopicData()
 
         initUI()
-
         viewModel.navigatorLiveData.observe(viewLifecycleOwner, ::navigate)
     }
 
     private fun navigate(event: HomeViewModel.NavigatorEvent) {
-        val topicType =  when (event) {
+        val topicType = when (event) {
             HomeViewModel.NavigatorEvent.MoveRandom -> null
             HomeViewModel.NavigatorEvent.MoveFriend -> TOPIC_FRIEND
             HomeViewModel.NavigatorEvent.MoveCouple -> TOPIC_COUPLE
@@ -74,17 +74,21 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         binding.tvVersion.text = getVersion(requireContext())
     }
 
-    private fun getChatTopicData() {
-        mFirestore.collection(DB_PATH_CHAT_TOPIC).addSnapshotListener { response, error ->
-            if (response == null) {
-                return@addSnapshotListener
-            }
+    private fun getChatTopicDataByCode(topicCode: String, result: (MutableList<ChatTopicDTO>) -> Unit) {
+        val dataList = mutableListOf<ChatTopicDTO>()
+        mFirestore.collection(DB_PATH_CHAT_TOPIC)
+            .whereEqualTo("topicCode", topicCode)
+            .addSnapshotListener { response, error ->
+                if (response == null) {
+                    return@addSnapshotListener
+                }
 
-            for (snapshot in response.documents) {
-                val item = snapshot.toObject(ChatTopicDTO::class.java)
-                debug("item >>> $item")
+                for (snapshot in response.documents) {
+                    val item = snapshot.toObject(ChatTopicDTO::class.java)!!
+                    dataList.add(item)
+                }
+                result(dataList)
             }
-        }
     }
 
     private fun insertUser() {
@@ -96,10 +100,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         }
     }
 
-    private fun moveChatTopic(topicType: String? = null) {
-        // TODO : topicType 에 따라 DB 에서 조회
-        val directions = HomeFragmentDirections.actionHomeFragmentToPickFragment(topicType ?: TOPIC_RANDOM)
-        findNavController().navigate(directions)
+    private fun moveChatTopic(topicCode: String? = null) {
+        if (topicCode != null) {
+            getChatTopicDataByCode(topicCode) { dataList ->
+                // 주제 카드 화면으로 이동
+                val directions = HomeFragmentDirections.actionHomeFragmentToPickFragment(topicCode ?: TOPIC_RANDOM, ChatTopicList(dataList.shuffled()))
+                findNavController().navigate(directions)
+            }
+        } else {
+            // TODO : 랜덤 픽 구현필요
+        }
     }
 
 }
