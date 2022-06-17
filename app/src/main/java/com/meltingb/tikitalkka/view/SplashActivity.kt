@@ -30,6 +30,7 @@ class SplashActivity : AppCompatActivity() {
     private fun moveMain() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
+        this.finish()
     }
 
     private fun signInAnonymously() {

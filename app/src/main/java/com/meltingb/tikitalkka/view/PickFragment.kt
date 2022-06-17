@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.animation.doOnEnd
 import androidx.core.view.isVisible
-import androidx.navigation.fragment.findNavController
+ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -72,6 +72,7 @@ class PickFragment : BaseFragment<FragmentPickBinding>(R.layout.fragment_pick) {
         }
 
         binding.btnNext.setOnClickListener {
+            binding.llBackView.visibility = View.VISIBLE
             setCardContent(cardPosition + 1)
             flipCard(requireContext(), binding.clQuestionView, binding.llBackView)
         }
@@ -81,6 +82,7 @@ class PickFragment : BaseFragment<FragmentPickBinding>(R.layout.fragment_pick) {
     }
 
     private fun setCardContent(position: Int) {
+        cardPosition = position
         viewModel.chatContentLiveData.value = dataList[position].chatContent
         if (dataList[position].description.isNotEmpty()) {
             viewModel.chatDescriptionLiveData.value = dataList[position].description
@@ -114,6 +116,8 @@ class PickFragment : BaseFragment<FragmentPickBinding>(R.layout.fragment_pick) {
             flipInAnimatorSet.start()
             flipInAnimatorSet.doOnEnd {
                 inVisibleView.isVisible = false
+                inVisibleView.alpha = 1f
+                inVisibleView.requestLayout()
             }
         } catch (e: Exception) {
 
