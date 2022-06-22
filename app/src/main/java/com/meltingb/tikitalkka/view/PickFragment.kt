@@ -29,6 +29,7 @@ import com.meltingb.tikitalkka.databinding.FragmentHomeBinding
 import com.meltingb.tikitalkka.databinding.FragmentPickBinding
 import com.meltingb.tikitalkka.model.ChatTopicDTO
 import com.meltingb.tikitalkka.model.UserDTO
+import com.meltingb.tikitalkka.utils.setOnSingleClickListener
 import com.meltingb.tikitalkka.viewmodel.PickViewModel
 import org.joda.time.DateTime
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -71,9 +72,21 @@ class PickFragment : BaseFragment<FragmentPickBinding>(R.layout.fragment_pick) {
             setCardContent(cardPosition)
         }
 
-        binding.btnNext.setOnClickListener {
+        binding.btnNext.setOnSingleClickListener({
+            if ((cardPosition + 1 == dataList.size)) {
+                // TODO : 전면광고 추가 필요
+                // TODO : 전면광과 시청 후 닫기 > 메인화면으로 이동 필요
+                findNavController().popBackStack()
+                return@setOnSingleClickListener
+            }
             binding.llBackView.visibility = View.VISIBLE
             setCardContent(cardPosition + 1)
+            flipCard(requireContext(), binding.clQuestionView, binding.llBackView)
+        }, 750)
+
+        binding.btnPrev.setOnClickListener {
+            binding.llBackView.visibility = View.VISIBLE
+            setCardContent(cardPosition - 1)
             flipCard(requireContext(), binding.clQuestionView, binding.llBackView)
         }
 
@@ -120,7 +133,7 @@ class PickFragment : BaseFragment<FragmentPickBinding>(R.layout.fragment_pick) {
                 inVisibleView.requestLayout()
             }
         } catch (e: Exception) {
-
+            // TODO : 예외처리 추가 필요
         }
     }
 
