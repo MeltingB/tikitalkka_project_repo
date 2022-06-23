@@ -74,8 +74,7 @@ class PickFragment : BaseFragment<FragmentPickBinding>(R.layout.fragment_pick) {
         }
 
         binding.btnNext.setOnSingleClickListener({
-//            if ((cardPosition + 1 == dataList.size)) {
-            if ((cardPosition + 1 == 5)) {
+            if ((cardPosition + 1 == dataList.size)) {
                 findNavController().popBackStack()
                 val intent = Intent(requireContext(), FullScreenAdActivity::class.java)
                 requireContext().startActivity(intent)
