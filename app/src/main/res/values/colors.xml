@@ -16,4 +16,6 @@
     <color name="col_ddd">#DDDDDD</color>
     <color name="col_eee">#EEEEEE</color>
     <color name="col_d5">#D5D5D5</color>
+    <color name="col_primary_ripple">#725DD4</color>
+    <color name="col_eee_ripple">#D6D6D6</color>
 </resources>

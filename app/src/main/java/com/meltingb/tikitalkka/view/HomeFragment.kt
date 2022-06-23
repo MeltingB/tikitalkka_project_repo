@@ -3,12 +3,9 @@ package com.meltingb.tikitalkka.view
 import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.findNavController
-import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.meltingb.base.helpers.debug
 import com.meltingb.base.ui.BaseFragment
-import com.meltingb.base.ui.utils.setOnSingleClickListener
 import com.meltingb.base.utils.AppPreference
 import com.meltingb.base.utils.CommonUtil.getVersion
 import com.meltingb.base.utils.NetworkStatus
@@ -74,7 +71,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         binding.tvVersion.text = getVersion(requireContext())
     }
 
-    private fun getChatTopicDataByCode(topicCode: String, result: (MutableList<ChatTopicDTO>) -> Unit) {
+    private fun getChatTopicDataByCode(
+        topicCode: String,
+        result: (MutableList<ChatTopicDTO>) -> Unit
+    ) {
         val dataList = mutableListOf<ChatTopicDTO>()
         mFirestore.collection(DB_PATH_CHAT_TOPIC)
             .whereEqualTo("topicCode", topicCode)
@@ -104,7 +104,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         if (topicCode != null) {
             getChatTopicDataByCode(topicCode) { dataList ->
                 // 주제 카드 화면으로 이동
-                val directions = HomeFragmentDirections.actionHomeFragmentToPickFragment(topicCode ?: TOPIC_RANDOM, ChatTopicList(dataList.shuffled()))
+                val directions = HomeFragmentDirections.actionHomeFragmentToPickFragment(
+                    topicCode ?: TOPIC_RANDOM, ChatTopicList(dataList.shuffled())
+                )
                 findNavController().navigate(directions)
             }
         } else {
