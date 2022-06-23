@@ -20,6 +20,17 @@
     <string name="prev">이전</string>
     <string name="next">다음</string>
     <string name="start">시작</string>
+    <string name="main_back_pressed">앱을 종료하려면 뒤로가기를 한번 더 누르세요</string>
+    <string name="common_error_message">오류가 발생했습니다.\n오류가 지속되는 경우 문의하기를 통해\n문의를 남겨주세요.</string>
+    <string name="inquiry">문의하기</string>
+    <string name="feedback_email">eungb14@gmail.com</string>
+    <string name="feedback_title">[티키톡카] 오류보고 및 의견</string>
+    <string name="feedback_message">오류에 대한 자세한 현상을 작성해주세요.\n
+        오류가 발생한 화면의 스크린샷을 보내주시면 큰 도움이 됩니다.🐞\n
+        새로운 기능 또는 컨텐츠에 대한 사용자분의 의견은 언제나 환영합니다.🤗\n</string>
+    <string name="feedback_model">● 스마트폰 기종 : </string>
+    <string name="feedback_os_version">● 스마트폰 OS VERSION : </string>
+    <string name="feedback_app_version">● APP VERSION : </string>
 
     <string name="banner_ad_unit_id">ca-app-pub-2616399306200183/3861586671</string>
     <string name="front_ad_unit_id">ca-app-pub-2616399306200183/6104606636</string>
