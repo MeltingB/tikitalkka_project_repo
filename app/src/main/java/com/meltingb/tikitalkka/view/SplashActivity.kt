@@ -5,9 +5,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
-import com.meltingb.base.helpers.debug
 import com.meltingb.base.utils.AppPreference
 import com.meltingb.base.utils.NetworkStatus
 import com.meltingb.tikitalkka.R
@@ -35,20 +33,28 @@ class SplashActivity : AppCompatActivity() {
 
     private fun signInAnonymously() {
         if (NetworkStatus.checkNetworkState(this)) {
-            auth.signInAnonymously()
-                .addOnCompleteListener(this) { task ->
-                    if (task.isSuccessful) {
-                        // 익명인증 성공
-                        val uid = auth.currentUser?.uid
-                        AppPreference.set(PREF_KEY_USER_UID, uid ?: "")
-                        Handler(Looper.getMainLooper()).postDelayed({
-                            moveMain()
-                        }, 1000)
-                    } else {
-                        // 익명인증 실패
-                        showAuthErrorDialog()
+            if (auth.currentUser != null) {
+                val uid = auth.currentUser?.uid
+                AppPreference.set(PREF_KEY_USER_UID, uid ?: "")
+                Handler(Looper.getMainLooper()).postDelayed({
+                    moveMain()
+                }, 1000)
+            } else {
+                auth.signInAnonymously()
+                    .addOnCompleteListener(this) { task ->
+                        if (task.isSuccessful) {
+                            // 익명인증 성공
+                            val uid = auth.currentUser?.uid
+                            AppPreference.set(PREF_KEY_USER_UID, uid ?: "")
+                            Handler(Looper.getMainLooper()).postDelayed({
+                                moveMain()
+                            }, 1000)
+                        } else {
+                            // 익명인증 실패
+                            showAuthErrorDialog()
+                        }
                     }
-                }
+            }
         } else {
             showAuthErrorDialog()
         }
