@@ -8,12 +8,14 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.animation.doOnEnd
 import androidx.core.view.isVisible
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.meltingb.base.helpers.debug
 import com.meltingb.base.ui.BaseFragment
+import com.meltingb.base.ui.helper.OnKeyBackPressedListener
 import com.meltingb.base.utils.AppPreference
 import com.meltingb.base.utils.CommonUtil.getVersion
 import com.meltingb.base.utils.NetworkStatus
@@ -30,12 +32,14 @@ import com.meltingb.tikitalkka.databinding.FragmentHomeBinding
 import com.meltingb.tikitalkka.databinding.FragmentPickBinding
 import com.meltingb.tikitalkka.model.ChatTopicDTO
 import com.meltingb.tikitalkka.model.UserDTO
+import com.meltingb.tikitalkka.utils.Common.showErrorDialog
 import com.meltingb.tikitalkka.utils.setOnSingleClickListener
 import com.meltingb.tikitalkka.viewmodel.PickViewModel
 import org.joda.time.DateTime
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class PickFragment : BaseFragment<FragmentPickBinding>(R.layout.fragment_pick) {
+class PickFragment : BaseFragment<FragmentPickBinding>(R.layout.fragment_pick),
+    OnKeyBackPressedListener {
 
     private val viewModel: PickViewModel by viewModel()
     private val args: PickFragmentArgs by navArgs<PickFragmentArgs>()
@@ -92,6 +96,10 @@ class PickFragment : BaseFragment<FragmentPickBinding>(R.layout.fragment_pick) {
             flipCard(requireContext(), binding.clQuestionView, binding.llBackView)
         }
 
+        binding.btnBack.setOnSingleClickListener({
+            moveBack()
+        }, 1000)
+
         viewModel.nowCountLiveData.value = "1"
         viewModel.totalCountLiveData.value = dataList.size.toString()
     }
@@ -135,8 +143,28 @@ class PickFragment : BaseFragment<FragmentPickBinding>(R.layout.fragment_pick) {
                 inVisibleView.requestLayout()
             }
         } catch (e: Exception) {
-            // TODO : 예외처리 추가 필요
+            // 예외처리 팝업
+            requireContext().showErrorDialog() {
+                findNavController().popBackStack()
+            }
         }
+    }
+
+    private fun moveBack() {
+        findNavController().popBackStack()
+        val intent = Intent(requireContext(), FullScreenAdActivity::class.java)
+        requireContext().startActivity(intent)
+        requireActivity().overridePendingTransition(0, 0)
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (requireActivity() as MainActivity).setBackKeyPressedListener(this)
+    }
+
+    override fun onBackKey() {
+        (requireActivity() as MainActivity).setBackKeyPressedListener(null)
+        moveBack()
     }
 
 }

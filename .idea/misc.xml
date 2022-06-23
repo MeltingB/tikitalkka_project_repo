@@ -3,9 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/selector_dialog_button_g.xml" value="0.212" />
+        <entry key="app/src/main/res/drawable/selector_dialog_button_p.xml" value="0.212" />
         <entry key="app/src/main/res/layout/activity_full_screen_ad.xml" value="0.32864583333333336" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.32864583333333336" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.32864583333333336" />
+        <entry key="app/src/main/res/layout/dialog_one_button.xml" value="0.2046875" />
+        <entry key="app/src/main/res/layout/dialog_two_button.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.5" />
         <entry key="app/src/main/res/layout/fragment_pick.xml" value="0.32864583333333336" />
       </map>
     </option>
