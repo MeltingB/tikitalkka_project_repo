@@ -3,11 +3,12 @@ package com.meltingb.tikitalkka.view
 import android.animation.AnimatorInflater
 import android.animation.AnimatorSet
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.core.animation.doOnEnd
 import androidx.core.view.isVisible
- import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -73,10 +74,12 @@ class PickFragment : BaseFragment<FragmentPickBinding>(R.layout.fragment_pick) {
         }
 
         binding.btnNext.setOnSingleClickListener({
-            if ((cardPosition + 1 == dataList.size)) {
-                // TODO : 전면광고 추가 필요
-                // TODO : 전면광과 시청 후 닫기 > 메인화면으로 이동 필요
+//            if ((cardPosition + 1 == dataList.size)) {
+            if ((cardPosition + 1 == 5)) {
                 findNavController().popBackStack()
+                val intent = Intent(requireContext(), FullScreenAdActivity::class.java)
+                requireContext().startActivity(intent)
+                requireActivity().overridePendingTransition(0, 0)
                 return@setOnSingleClickListener
             }
             binding.llBackView.visibility = View.VISIBLE

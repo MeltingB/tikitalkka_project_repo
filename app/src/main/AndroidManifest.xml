@@ -10,21 +10,35 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:theme="@style/Theme.Tikitalkka"
         android:usesCleartextTraffic="true"
-        tools:replace="android:theme"
-        android:theme="@style/Theme.Tikitalkka">
-        <activity android:name=".view.SplashActivity"
+        tools:replace="android:theme">
+        <activity
+            android:name=".view.FullScreenAdActivity"
+            android:exported="true"
+            android:noHistory="true"
             android:screenOrientation="portrait"
-            android:exported="true">
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".view.SplashActivity"
+            android:exported="true"
+            android:noHistory="true"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.MainActivity"
+        <activity
+            android:name=".view.MainActivity"
+            android:exported="true"
             android:screenOrientation="portrait"
-            android:exported="true"/>
+            tools:ignore="LockedOrientationActivity" /> <!-- ADMOB -->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-2616399306200183~4053158360" />
     </application>
 
 </manifest>

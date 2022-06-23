@@ -20,4 +20,9 @@
     <string name="prev">이전</string>
     <string name="next">다음</string>
     <string name="start">시작</string>
+
+    <string name="banner_ad_unit_id">ca-app-pub-2616399306200183/3861586671</string>
+    <string name="front_ad_unit_id">ca-app-pub-2616399306200183/6104606636</string>
+    <string name="banner_ad_unit_id_test">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="front_ad_unit_id_test">ca-app-pub-3940256099942544/1033173712</string>
 </resources>
